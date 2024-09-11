@@ -7,12 +7,18 @@ class SendUserData {
 
   SendUserData._();
 
-  Future<Map<String, dynamic>> sendUserData(String username, String email, String phone) async {
-    var response = await _dioClient.dio.post('/api/submit');
+  Future<Map<String, dynamic>> sendUserData(String username, String email,
+      String phone) async {
+    var userData = <String, String>{
+      'username': username,
+      'email': email,
+      'phone': phone,
+    };
+    var response = await _dioClient.dio.post('/api/submit', data: userData);
 
     return {
-      'data' : response.data,
-      'statusCode' : response.statusCode,
+      'data': response.data,
+      'statusCode': response.statusCode,
     };
   }
 }

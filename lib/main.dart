@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Sort-Filtration Project',
+      title: 'Networking Project',
       home: MainPage(),
     );
   }
