@@ -1,16 +1,7 @@
 # networking_proj
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This Flutter project demonstrates a networking solution that includes API integration, 
+state management using BLoC, and clean architecture principles. The app handles user 
+input and communicates with a backend API to send and receive data. Key features include 
+form validation, error handling via mappers, and separation of concerns through domain-driven design.
+The project also utilizes get_it for dependency injection, ensuring modularity and testability.
