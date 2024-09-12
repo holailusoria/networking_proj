@@ -1,8 +1,10 @@
+import 'package:networking_proj/core/di/di.dart';
+
 import '../../data/repositories/dio_client.dart';
 
 final class UserDataSender {
   static UserDataSender instance = UserDataSender._();
-  final DioClient _dioClient = DioClient();
+  final _dioClient = getIt<DioClient>();
 
   UserDataSender._();
 

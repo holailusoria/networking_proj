@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:networking_proj/core/di/di.dart';
 import 'package:networking_proj/core/error/error_mapper.dart';
 import '../../data/repositories/user_data_sender.dart';
 
@@ -17,7 +18,7 @@ class MainPageBloc extends Bloc<MainPageEvent, MainPageState> {
     emit(SendingState());
 
     try {
-      final result = await UserDataSender.instance.sendUserData(
+      final result = await getIt<UserDataSender>().sendUserData(
         event.username,
         event.email,
         event.phone,

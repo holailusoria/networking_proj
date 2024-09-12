@@ -36,6 +36,7 @@ dependencies:
   dio: ^5.7.0
   equatable: ^2.0.5
   http_mock_adapter: ^0.6.1
+  get_it: ^7.7.0
 
 dev_dependencies:
   flutter_test:
