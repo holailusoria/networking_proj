@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:networking_proj/domain/use_cases/send_user_data_use_case.dart';
+import '../../core/di/di.dart';
 import '../bloc/main_page_bloc.dart';
 import '../widgets/snackbars/failure_sent_data.dart';
 import '../widgets/snackbars/success_sent_data.dart';
@@ -15,7 +17,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  final MainPageBloc _mainPageBloc = MainPageBloc();
+  final MainPageBloc _mainPageBloc = MainPageBloc(getIt<SendUserDataUseCase>());
   final _userNameController = TextEditingController();
   final _emailController = TextEditingController();
   final _phoneNumberController = TextEditingController();

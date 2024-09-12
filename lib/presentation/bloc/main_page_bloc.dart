@@ -1,15 +1,15 @@
-import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:networking_proj/core/di/di.dart';
 import 'package:networking_proj/core/error/error_mapper.dart';
-import '../../data/repositories/user_data_sender.dart';
+import '../../domain/use_cases/send_user_data_use_case.dart';
 
 part 'main_page_event.dart';
 part 'main_page_state.dart';
 
 class MainPageBloc extends Bloc<MainPageEvent, MainPageState> {
-  MainPageBloc() : super(MainPageInitial()) {
+  final SendUserDataUseCase _sendUserDataUseCase;
+
+  MainPageBloc(this._sendUserDataUseCase) : super(MainPageInitial()) {
     on<SendDataEvent>(_onSendDataEvent);
   }
 
@@ -18,12 +18,7 @@ class MainPageBloc extends Bloc<MainPageEvent, MainPageState> {
     emit(SendingState());
 
     try {
-      final result = await getIt<UserDataSender>().sendUserData(
-        event.username,
-        event.email,
-        event.phone,
-      );
-
+      final result = await _sendUserDataUseCase(event.username, event.email, event.phone);
       _handleServerResponse(result, emit);
     } catch (ex) {
       _handleError(ex, emit);
