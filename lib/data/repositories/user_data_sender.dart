@@ -1,11 +1,10 @@
-import 'package:dio/dio.dart';
-import '../repository/dio_client.dart';
+import '../../data/repositories/dio_client.dart';
 
-class SendUserData {
-  static SendUserData instance = SendUserData._();
+final class UserDataSender {
+  static UserDataSender instance = UserDataSender._();
   final DioClient _dioClient = DioClient();
 
-  SendUserData._();
+  UserDataSender._();
 
   Future<Map<String, dynamic>> sendUserData(String username, String email,
       String phone) async {
@@ -14,6 +13,7 @@ class SendUserData {
       'email': email,
       'phone': phone,
     };
+
     var response = await _dioClient.dio.post('/api/submit', data: userData);
 
     return {

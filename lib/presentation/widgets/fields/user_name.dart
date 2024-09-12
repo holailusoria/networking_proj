@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import '../../widgets/borders/text_field_border.dart';
-import '../../extensions/form_fields_validator.dart';
+import '../borders/text_field_border.dart';
+import '../../../core/utils/form_fields_validation_util.dart';
 
-Padding userEmailField(TextEditingController emailController) {
+Padding userNameField(TextEditingController userNameController) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 8.0),
     child: TextFormField(
       decoration: InputDecoration(
-        labelText: 'Email',
+        labelText: 'Username',
         border: textFieldBorder,
       ),
       onTapOutside: (event) => FocusManager.instance.primaryFocus!.unfocus(),
-      validator: (input) => !input!.isUserEmailValid ? 'Incorrect email' : null,
+      validator: (input) => !input!.isUserNameValid ? 'Incorrect username' : null,
     ),
   );
 }

@@ -45,7 +45,7 @@ class _MainPageState extends State<MainPage> {
               );
             }
 
-            if(state is FailureSent) {
+            if(state is ErrorState) {
               WidgetsBinding.instance.addPostFrameCallback((_) =>
                   ScaffoldMessenger.of(context).showSnackBar(
                     failureSentData(state.message),
@@ -53,26 +53,10 @@ class _MainPageState extends State<MainPage> {
               );
             }
 
-            if(state is NoInternetConnection) {
-              WidgetsBinding.instance.addPostFrameCallback((_) =>
-                  ScaffoldMessenger.of(context).showSnackBar(
-                      failureSentData('No internet connection.')
-                  ),
-              );
-            }
-
-            if(state is TimeoutException) {
-              WidgetsBinding.instance.addPostFrameCallback((_) =>
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    failureSentData('Request timed out. Try again later.'),
-                  ),
-              );
-            }
-
             return Stack(
               children: [
                 buildForm(),
-                state is InProgress ?
+                state is SendingState ?
                   loadingIndicator() :
                   const SizedBox(),
               ],
@@ -116,7 +100,7 @@ class _MainPageState extends State<MainPage> {
 
         if (!isValid) return;
 
-        _mainPageBloc.add(SendCredentials(_userNameController.text, _emailController.text, _phoneNumberController.text));
+        _mainPageBloc.add(SendDataEvent(_userNameController.text, _emailController.text, _phoneNumberController.text));
       },
     );
   }

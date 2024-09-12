@@ -1,4 +1,4 @@
-extension FormFieldsValidator on String {
+extension FormFieldsValidationUtil on String {
   get isUserNameValid => isNotEmpty && length > 2;
 
   get isUserEmailValid => RegExp(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../pages/main_page.dart';
+import 'presentation/views/main_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

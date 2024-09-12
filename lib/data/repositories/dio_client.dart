@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
+import 'package:networking_proj/core/constants/api_constants.dart';
 
 class DioClient {
   final Dio dio;
@@ -8,7 +9,7 @@ class DioClient {
   factory DioClient() {
     var dioClient = Dio(
         BaseOptions(
-          baseUrl: 'https://example.com',
+          baseUrl: ApiConstants.baseUrl,
         )
     );
 
