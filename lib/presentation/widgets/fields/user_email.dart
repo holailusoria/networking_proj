@@ -6,6 +6,7 @@ Padding userEmailField(TextEditingController emailController) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 8.0),
     child: TextFormField(
+      controller: emailController,
       decoration: InputDecoration(
         labelText: 'Email',
         border: textFieldBorder,

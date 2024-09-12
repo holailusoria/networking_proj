@@ -6,6 +6,7 @@ Padding userNameField(TextEditingController userNameController) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 8.0),
     child: TextFormField(
+      controller: userNameController,
       decoration: InputDecoration(
         labelText: 'Username',
         border: textFieldBorder,

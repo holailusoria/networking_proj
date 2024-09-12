@@ -6,6 +6,7 @@ Padding userPhoneField(TextEditingController phoneController) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 8.0),
     child: TextFormField(
+      controller: phoneController,
       decoration: InputDecoration(
         labelText: 'Phone number',
         border: textFieldBorder,

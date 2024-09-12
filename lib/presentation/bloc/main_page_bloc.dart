@@ -30,8 +30,10 @@ class MainPageBloc extends Bloc<MainPageEvent, MainPageState> {
   }
 
   void _handleServerResponse(Map<String, dynamic> result, Emitter<MainPageState> emit) {
-    if (result['statusCode'] != 200) {
-      emit(ErrorState('Server error: ${result['message']}'));
+    final serverError = ErrorMapper.mapServerResponse(result);
+
+    if (serverError != null) {
+      emit(ErrorState(serverError));
     } else {
       emit(SuccessSent());
     }
@@ -39,6 +41,7 @@ class MainPageBloc extends Bloc<MainPageEvent, MainPageState> {
 
   void _handleError(Object error, Emitter<MainPageState> emit) {
     final errorMessage = ErrorMapper.mapErrorToMessage(error);
+    print(errorMessage);
     emit(ErrorState('An unknown error occurred: $errorMessage'));
   }
 }

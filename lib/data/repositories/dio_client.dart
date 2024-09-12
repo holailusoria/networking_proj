@@ -4,7 +4,7 @@ import 'package:networking_proj/core/constants/api_constants.dart';
 
 class DioClient {
   final Dio dio;
-  final DioAdapter _dioAdapter;
+  final DioAdapter dioAdapter;
 
   factory DioClient() {
     var dioClient = Dio(
@@ -22,18 +22,8 @@ class DioClient {
 
     var adapter = DioAdapter(dio: dioClient);
 
-    adapter.onPost(
-      '/api/submit',
-          (server) =>
-          server.reply(200, {
-            'username': 'John Doe',
-            'email': 'test@test.com',
-            'phone': '1234567890'
-          }),
-    );
-
     return DioClient._(dioClient, adapter);
   }
 
-  DioClient._(this.dio, this._dioAdapter);
+  DioClient._(this.dio, this.dioAdapter);
 }

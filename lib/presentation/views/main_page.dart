@@ -33,35 +33,30 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: BlocBuilder<MainPageBloc, MainPageState>(
+        child: BlocListener<MainPageBloc, MainPageState>(
           bloc: _mainPageBloc,
-          builder: (context, state) {
-            if(state is SuccessSent) {
+          listener: (context, state) {
+            if (state is SuccessSent) {
               _formKey.currentState!.reset();
-              WidgetsBinding.instance.addPostFrameCallback((_) =>
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    successSentData(),
-                  ),
+              ScaffoldMessenger.of(context).showSnackBar(
+                successSentData(),
               );
             }
 
-            if(state is ErrorState) {
-              WidgetsBinding.instance.addPostFrameCallback((_) =>
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    failureSentData(state.message),
-                  ),
+            if (state is ErrorState) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                failureSentData(state.message),
               );
             }
-
-            return Stack(
-              children: [
-                buildForm(),
-                state is SendingState ?
-                  loadingIndicator() :
-                  const SizedBox(),
-              ],
-            );
           },
+          child: Stack(
+            children: [
+              buildForm(),
+              _mainPageBloc.state is SendingState ?
+              loadingIndicator() :
+              const SizedBox(),
+            ],
+          ),
         ),
       ),
     );
@@ -100,7 +95,9 @@ class _MainPageState extends State<MainPage> {
 
         if (!isValid) return;
 
-        _mainPageBloc.add(SendDataEvent(_userNameController.text, _emailController.text, _phoneNumberController.text));
+        _mainPageBloc.add(SendDataEvent(
+            _userNameController.text, _emailController.text,
+            _phoneNumberController.text));
       },
     );
   }
